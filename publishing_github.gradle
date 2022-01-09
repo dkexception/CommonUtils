@@ -1,0 +1,32 @@
+def LIB_GROUP_ID = 'com.dkexception'
+def LIB_ARTIFACT_ID = 'common-utils'
+def LIB_VERSION = '1.0.1-test'
+
+def githubProperties = new Properties()
+githubProperties.load(new FileInputStream(rootProject.file("github.properties")))
+
+task sourceJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier "sources"
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/dkexception/commonutils")
+            credentials {
+                username = githubProperties['gpr.usr']
+                password = githubProperties['gpr.key']
+            }
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+            groupId = LIB_GROUP_ID
+            artifactId = LIB_ARTIFACT_ID
+            version = LIB_VERSION
+            artifact(sourceJar)
+        }
+    }
+}
