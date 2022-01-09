@@ -7,18 +7,21 @@
     <artifactId>release</artifactId>
     <version>1.0.0</version>
     <packaging>aar</packaging>
-    <plugin>
-        <groupId>com.simpligility.maven.plugins</groupId>
-        <artifactId>android-maven-plugin</artifactId>
-        <version>4.1.0</version>
-
-        <extensions>true</extensions>
-        <configuration>
-            <sign>
-                <debug>false</debug>
-            </sign>
-        </configuration>
-    </plugin>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.simpligility.maven.plugins</groupId>
+                <artifactId>android-maven-plugin</artifactId>
+                <version>4.1.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <sign>
+                        <debug>false</debug>
+                    </sign>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
     <dependencies>
         <dependency>
             <groupId>androidx.appcompat</groupId>
